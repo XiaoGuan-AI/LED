@@ -1,0 +1,93 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/30/2021  23:26:30  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+G:\DANPIANJI\KEIL\C51\BIN\BL51.EXE .\main\C51S.LIB, main.obj TO 8x8LED
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+
+
+LINK MAP OF MODULE:  8x8LED (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     00EAH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  8x8LED (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  D:00A8H         SYMBOL        IE
+  C:004BH         SYMBOL        INT_T0
+  C:0063H         SYMBOL        NEXT1
+  C:006FH         SYMBOL        NEXT2
+  C:007FH         SYMBOL        NEXT3
+  C:0081H         SYMBOL        NEXT4
+  C:008AH         SYMBOL        NUB
+  N:0032H         SYMBOL        NUMB
+  D:0080H         SYMBOL        P0
+  D:00B0H         SYMBOL        P3
+  N:0031H         SYMBOL        R_CNT
+  C:0030H         SYMBOL        START
+  C:0082H         SYMBOL        TAB
+  N:0033H         SYMBOL        TCOUNT
+  D:008CH         SYMBOL        TH0
+  D:008AH         SYMBOL        TL0
+  D:0089H         SYMBOL        TMOD
+  B:0088H.4       SYMBOL        TR0
+  C:0000H         LINE#         5
+  C:000BH         LINE#         7
+  C:0030H         LINE#         10
+  C:0032H         LINE#         11
+  C:0035H         LINE#         12
+  C:0038H         LINE#         13
+  C:003BH         LINE#         14
+  C:003EH         LINE#         15
+  C:0041H         LINE#         16
+  C:0044H         LINE#         17
+  C:0046H         LINE#         18
+  C:0049H         LINE#         19
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/30/2021  23:26:30  PAGE 2
+
+
+  C:004BH         LINE#         21
+  C:004EH         LINE#         22
+  C:0051H         LINE#         23
+  C:0054H         LINE#         24
+  C:0056H         LINE#         25
+  C:0057H         LINE#         27
+  C:0059H         LINE#         28
+  C:005CH         LINE#         29
+  C:005EH         LINE#         30
+  C:005FH         LINE#         32
+  C:0061H         LINE#         33
+  C:0063H         LINE#         35
+  C:0065H         LINE#         36
+  C:0067H         LINE#         37
+  C:006AH         LINE#         38
+  C:006DH         LINE#         39
+  C:006FH         LINE#         41
+  C:0071H         LINE#         42
+  C:0073H         LINE#         43
+  C:0076H         LINE#         44
+  C:0079H         LINE#         45
+  C:007AH         LINE#         46
+  C:007DH         LINE#         47
+  C:007FH         LINE#         49
+  C:0081H         LINE#         51
+  -------         ENDMOD        MAIN
+
+Program Size: data=8.0 xdata=0 code=234
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

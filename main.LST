@@ -1,0 +1,124 @@
+A51 MACRO ASSEMBLER  MAIN                                                                 11/30/2021 23:26:29 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN main.obj
+ASSEMBLER INVOKED BY: G:\danpianji\keil\C51\BIN\A51.EXE main\main.ASM SET(SMALL) DEBUG PRINT(.\main.lst) OBJECT(main.obj
+                      ) EP
+
+LOC  OBJ            LINE     SOURCE
+
+  0031                 1      R_CNT EQU 31H          ;ÁÐÂëR_NCT=31Hµ¥Ôª
+  0032                 2     NUMB EQU 32H            ;ÐÐÂëNUMB=32Hµ¥Ôª
+  0033                 3     TCOUNT EQU 33H          ;À­Ä»¼ÆÊÖµTCOUNT=33Hµ¥Ôª
+0000                   4             ORG 00H                 ;³ÌÐòÆðÊ¼µØÖ·
+0000 020030            5             LJMP START      
+000B                   6             ORG 0BH                 ;ÖÐ¶ÏÈë¿ÚµØÖ·
+000B 02004B            7             LJMP INT_T0             
+0030                   8             ORG 30H                 ;×Ó³ÌÐòÈë¿ÚµØÖ·
+0030                   9     START:                                  ;Ö÷³ÌÐò¿ªÊ¼
+0030 7800             10             MOV R0, #00H            ;Ã¿ÁÐµÄÐÐÂëÆðÊ¼ÐòºÅÖÃ0
+0032 753100           11             MOV R_CNT, #00H         ;ÁÐ:³õÖµ00ËÍµ½31Hµ¥Ôª
+0035 753200           12             MOV NUMB, #00H          ;ÐÐ:³õÖµ00ËÍµ½32Hµ¥Ôª
+0038 753300           13             MOV TCOUNT, #00H        ;¼ÆÊµ¥Ôª³õÖµÖÃ0
+003B 758901           14             MOV TMOD, #01H          ;¼ÆÊ¶¨Ê±Æ÷Ñ¡ÓÃ16Î»µÄ¼ÆÊÆ÷£¬¹¤×÷ÔÚ·½Ê½1
+003E 758CEC           15             MOV TH0, #(65536-5000)/256              ;¶¨Ê±5ms¡£¶¨Ê±Æ÷¸ßÎ»³õÖµÎª236
+0041 758A78           16             MOV TL0, #(65536-5000) MOD 256  ;¶¨Ê±Æ÷µÍÎ»³õÖµÎª120
+0044 D28C             17             SETB TR0                        ;Æô¶¯C/TµÄ¶¨Ê±Æ÷T0
+0046 75A882           18             MOV IE, #82H            ;CPU¿ªÖÐ¶Ï
+0049 80FE             19             SJMP $                          ;ÖÐ¶ÏµÈ´
+004B                  20     INT_T0:         
+004B 758CEC           21             MOV TH0, #(65536-5000)/256              ;¶¨Ê±5ms£¬ÉèÖÃ¶¨Ê±Æ÷T0¸ßÎ»³õÖµÎª236
+004E 758AEC           22             MOV TL0, #(65536-5000)/256              ; ¶¨Ê±Æ÷T0µÍÎ»³õÖµÎª120
+0051 900082           23             MOV DPTR, #TAB                  ;¶ÁÁÐÂë±íÊ×µØÖ·£¬·ÅÈëDPTR
+0054 E531             24             MOV A, R_CNT                    ;¶ÁÁÐÂëÆ«ÒÆµØÖ·£¬·ÅÈëAÖÐ
+0056 93               25             MOVC A, @A+DPTR 
+                      26                     ;»ùÖ·±äÖ·Ñ°Ö·½«Ñ°µ½µÄÁÐÂëÊ¾Ý·ÅÈëAÖÐ
+0057 F5B0             27             MOV P3,A                                ;½«ÁÐÂëÊ¾ÝËÍP3¿ÚÊä³ö
+0059 90008A           28             MOV DPTR, #NUB                  ;×°ÈëÏÔÊ¾Ê¾ÝµÄµØÖ·
+005C E532             29             MOV A, NUMB                             ;ÏÔÊ¾Ä»´ÎµÄÆ«ÒÆµØÖ·
+005E 93               30             MOVC A, @A+DPTR 
+                      31             ;Ñ°µ½Ê¾ÝµÄÐÐÂëµØÖ·
+005F F580             32             MOV P0, A                               ;½«¸ÃµØÖ·ÖµÊä³ö
+0061 0532             33             INC NUMB                                ;ÐÐÂëµØÖ·¼Ó1
+0063                  34     NEXT1:                                          
+0063 0531             35             INC R_CNT                               ;É¨ÃèÁÐÂëµØÖ·¼Ó1
+0065 E531             36             MOV A, R_CNT                    ;°ÑÁÐµØÖ··ÅÈëAÖÐ
+0067 B40805           37             CJNE A, #8, NEXT2               ;A²»µÈÓÚ8£¬×ª×Ó³ÌÐòNEXT2£¬·ñÔòÍùÏÂÖ´ÐÐ
+006A 753100           38             MOV R_CNT, #00H                 ;¾Í°ÑÁÐÂëÖÃ0
+006D 8832             39             MOV NUMB, R0                    ;ÐÐÂëµØÖ·ËÍ´æ´¢µ¥Ôª¸ñÖÐ
+006F                  40     NEXT2:
+006F 0533             41             INC TCOUNT                              ;À­Ä»¼ÆÊÐòºÅ¼Ó1
+0071 E533             42             MOV A, TCOUNT                   ;½«Ä»´ÎÐòºÅËÍAÖÐ
+0073 B4280B           43             CJNE A, #40, NEXT4              ;´ËÐòºÅ²»µÈÓÚ40×ªNext4£¬·ñÔòÍùÏÂÖ´ÐÐ
+0076 753300           44             MOV TCOUNT, #00H                ;°ÑÀ­Ä»Ê±Ðò¹é0
+0079 08               45             INC R0                                  ;ÐÐÂëÆðÊ¼µØÖ·¼Ó1
+007A B85802           46             CJNE R0, #88, NEXT3     ;ÐÐÂë×Ô¼Ó´ÎÊ²»Âú11×Ö·û¡Á8ÐÐ/×Ö·û=88ÐÐ¾Í×ªNext3
+007D 7800             47             MOV R0, #00H                    ;²»È»¾Í°ÑÐÐÂëÖÃ0
+007F                  48     NEXT3:
+007F 8832             49             MOV NUMB, R0    ;ËÍÐÂµÄÒ»Ä»ÐÐÂëÆðÊ¼Î»¸øR0
+0081                  50     NEXT4:
+0081 32               51             RETI            ;ÖÐ¶Ï·µ»Ø
+0082                  52     TAB:                    ;ÁÐÂëÂë±í
+0082 FEFDFBF7         53             DB 0FEH, 0FDH, 0FBH, 0F7H, 0EFH, 0DFH, 0BFH, 7FH        ;ÁÐÉ¨Ãè´ÓÓÒÏò×ó
+0086 EFDFBF7F                
+008A                  54     NUB:                    ;ÐÐÂëÂë±í£¬×Ö·ûÊ¾Ý
+008A 00000000         55                     DB 00H, 00H, 00H, 00H, 00H, 00H, 00H, 00H               ;NULL
+008E 00000000                
+A51 MACRO ASSEMBLER  MAIN                                                                 11/30/2021 23:26:29 PAGE     2
+
+0092 00003E41         56             DB 00H, 00H, 3EH, 41H, 41H, 41H, 3EH, 00H               ; 0
+0096 41413E00                
+009A 00000000         57             DB 00H, 00H, 00H, 00H, 21H, 7FH, 01H, 00H               ; 1
+009E 217F0100                
+00A2 00002745         58             DB 00H, 00H, 27H, 45H, 45H, 45H, 39H, 00H               ; 2
+00A6 45453900                
+00AA 00002249         59             DB 00H, 00H, 22H, 49H, 49H, 49H, 36H, 00H               ; 3
+00AE 49493600                
+00B2 00000C14         60             DB 00H, 00H, 0CH, 14H, 24H, 7FH, 04H, 00H               ; 4
+00B6 247F0400                
+00BA 00007251         61             DB 00H, 00H, 72H, 51H, 51H, 51H, 4EH, 00H               ; 5
+00BE 51514E00                
+00C2 00003E49         62             DB 00H, 00H, 3EH, 49H, 49H, 49H, 26H, 00H               ; 6
+00C6 49492600                
+00CA 00004040         63             DB 00H, 00H, 40H, 40H, 40H, 4FH, 70H, 00H               ; 7
+00CE 404F7000                
+00D2 00003649         64             DB 00H, 00H, 36H, 49H, 49H, 49H, 36H, 00H               ; 8
+00D6 49493600                
+00DA 00003249         65             DB 00H, 00H, 32H, 49H, 49H, 49H, 3EH, 00H               ; 9
+00DE 49493E00                
+00E2 00000000         66             DB 00H, 00H, 00H, 00H, 00H, 00H, 00H, 00H               ;NULL
+00E6 00000000                
+                      67     END                                                             ;½áÊø»ã±à
+A51 MACRO ASSEMBLER  MAIN                                                                 11/30/2021 23:26:29 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+IE . . . . . . . .  D ADDR   00A8H   A   
+INT_T0 . . . . . .  C ADDR   004BH   A   
+NEXT1. . . . . . .  C ADDR   0063H   A   
+NEXT2. . . . . . .  C ADDR   006FH   A   
+NEXT3. . . . . . .  C ADDR   007FH   A   
+NEXT4. . . . . . .  C ADDR   0081H   A   
+NUB. . . . . . . .  C ADDR   008AH   A   
+NUMB . . . . . . .  N NUMB   0032H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+R_CNT. . . . . . .  N NUMB   0031H   A   
+START. . . . . . .  C ADDR   0030H   A   
+TAB. . . . . . . .  C ADDR   0082H   A   
+TCOUNT . . . . . .  N NUMB   0033H   A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
